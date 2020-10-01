@@ -59,6 +59,15 @@
     return database.lastReviewed.orderIds.map((x) => api.getOrderById(x));
   };
 
+  // Метод добавления последних просматриваемых заказов
+  api.addLastReviewed = function addLastReviewed(orderId) {
+    // Перезаписываем в database.lastReviewed orderIds, добавляя первый элемент из входящего аргумента и обрезаем массив по значению maxLength
+    database.lastReviewed.orderIds = [
+      orderId,
+      ...database.lastReviewed.orderIds,
+    ].slice(0, database.lastReviewed.maxLength);
+  };
+
   window.Database = api;
 
   // Функция для предотвращения изменения получаемых данных
