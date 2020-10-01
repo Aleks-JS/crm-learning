@@ -55,7 +55,7 @@
 					<h6
 						class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
 						Последние просматриваемые</h6>
-					<ul class="nav flex-column mb-2">
+					<ul class="nav flex-column mb-2" data-reviewed-list>
 						<li class="nav-item">
 							<a class="nav-link" href="#">
 								<img src="./assets/arrow.png" alt="" style="width: 30px">
@@ -222,6 +222,16 @@
 			</main>
 		</div>
 	</div>
+
+	<template data-reviewed>
+		<li class="nav-item">
+			<a class="nav-link" href="#">
+				<img src="./assets/arrow.png" alt="" style="width: 30px">
+				%FULLNAME%
+			</a>
+		</li>
+	</template>
+
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
 	</script>
