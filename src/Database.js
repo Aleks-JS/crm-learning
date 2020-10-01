@@ -4,6 +4,11 @@
   // База данных
 
   const database = {
+    lastReviewed: {
+      maxLength: 4,
+      orderIds: [12, 25, 589, 69],
+    },
+
     orders: [
       {
         id: 1,
@@ -47,6 +52,11 @@
       return getCopy(order);
     }
     return null;
+  };
+
+  // Метод получения данных из lastReviewed по id
+  api.getLastReviewed = function () {
+    return database.lastReviewed.orderIds.map((x) => api.getOrderById(x));
   };
 
   window.Database = api;
