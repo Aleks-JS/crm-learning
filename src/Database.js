@@ -38,7 +38,7 @@
   };
 
   // api => экземпляр класса EventEmitter
-  const api = new EventEmitter;
+  const api = new EventEmitter();
 
   // Метод перезаписи данных из базы данных для предотвращения мутации
   api.seed = function seed(orders) {
@@ -62,6 +62,14 @@
 
   // Метод добавления последних просматриваемых заказов
   api.addLastReviewed = function addLastReviewed(orderId) {
+    const arrDataBase = database.lastReviewed.orderIds;
+    // Если последний просматриваемый заказ равен предыдущему, то return
+    if (orderId === arrDataBase[0]) return;
+
+    // Если последний просматриваемый заказ уже есть в текущем списке => удаляем его
+    if (arrDataBase.includes(orderId)) {
+      arrDataBase.splice(1, arrDataBase.indexOf(orderId));
+    }
     // Перезаписываем в database.lastReviewed orderIds, добавляя первый элемент из входящего аргумента и обрезаем массив по значению maxLength
     database.lastReviewed.orderIds = [
       orderId,
