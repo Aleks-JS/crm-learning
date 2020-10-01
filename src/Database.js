@@ -37,7 +37,8 @@
     ],
   };
 
-  const api = {};
+  // api => экземпляр класса EventEmitter
+  const api = new EventEmitter;
 
   // Метод перезаписи данных из базы данных для предотвращения мутации
   api.seed = function seed(orders) {
@@ -66,6 +67,8 @@
       orderId,
       ...database.lastReviewed.orderIds,
     ].slice(0, database.lastReviewed.maxLength);
+    // При изменении базы данных инициализируем событие "update", по которое можно будет обработать
+    api.emit("update");
   };
 
   window.Database = api;
